@@ -12,6 +12,7 @@ namespace Pillz
         [SerializeField] private int _countdownTimeInSeconds = 3;
         [SerializeField] private int _roundTimeInSeconds = 600;
         [SerializeField] private float _introWaitTimeInSeconds = 2f;
+        [SerializeField] private float _tickInterval = 0.25f;
 
         public static event Action<float> CountdownStart;
         public static event Action<float> RoundStart;
@@ -48,7 +49,7 @@ namespace Pillz
         private IEnumerator PerformCountdown()
         {
             _currentPhase = RoundPhase.Countdown;
-            float remainingTime = _countdownTimeInSeconds;
+            float remainingTime = _tickInterval;
             CountdownStart?.Invoke(remainingTime);
 
             while (remainingTime > 0f)
